@@ -110,7 +110,10 @@ class InvoiceRow extends React.Component {
                 </tr>
                 <tr>
                     <td>
-                        <button onClick={() => this.props.onClick()}>Add Row</button>
+                        <button onClick={() => this.props.onAddRow()}>Add Row</button>
+                    </td>
+                    <td>
+                        <button onClick={() => this.props.onDeleteRow()}>Delete Row</button>
                     </td>
                 </tr>
             </tbody>
@@ -150,7 +153,7 @@ class InvoiceTable extends React.Component {
     }
 
     addRowAfter(rowNumber) {
-        console.log(this.state);
+        
         let currentRowId = this.state.nextRowId;
         this.setState({ nextRowId: currentRowId + 1 });
 
@@ -168,6 +171,12 @@ class InvoiceTable extends React.Component {
         this.setState({ rows: rows });
     }
 
+    deleteRow(rowNumber) {
+        const rows = this.state.rows.slice();
+        rows.splice(rowNumber, 1);
+        this.setState({ rows: rows });
+    }
+
     renderRow(rowData) {
 
         return <InvoiceRow
@@ -178,7 +187,8 @@ class InvoiceTable extends React.Component {
             quantity={rowData.quantity}
             price={rowData.price}
             total={rowData.total}
-            onClick={() => this.addRowAfter(rowData.number)}
+            onAddRow={() => this.addRowAfter(rowData.number)}
+            onDeleteRow={() => this.deleteRow(rowData.number)}
         />
     }
 
