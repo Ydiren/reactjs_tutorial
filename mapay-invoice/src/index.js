@@ -157,6 +157,8 @@ class InvoiceTable extends React.Component {
         let currentRowId = this.state.nextRowId;
         this.setState({ nextRowId: currentRowId + 1 });
 
+        console.log('Adding row: ' + currentRowId);
+
         let newRow = {
             number: currentRowId,
             name: this.defaultRowData.name,
@@ -166,14 +168,16 @@ class InvoiceTable extends React.Component {
             total: this.defaultRowData.total
         }
         const rows = this.state.rows.slice();
-        let rowBefore = rows.find(r => r.number === rowNumber)
-        rows.splice(rowBefore.number + 1, 0, newRow);
+        let rowBefore = rows.indexOf(rows.find(r => r.number === rowNumber));
+        rows.splice(rowBefore + 1, 0, newRow);
         this.setState({ rows: rows });
     }
 
     deleteRow(rowNumber) {
+        console.log('deleting row: ' + rowNumber);
         const rows = this.state.rows.slice();
-        rows.splice(rowNumber, 1);
+        let rowIndexToDelete = rows.indexOf(rows.find(r => r.number === rowNumber));
+        rows.splice(rowIndexToDelete, 1);
         this.setState({ rows: rows });
     }
 
@@ -187,8 +191,8 @@ class InvoiceTable extends React.Component {
             quantity={rowData.quantity}
             price={rowData.price}
             total={rowData.total}
-            onAddRow={() => this.addRowAfter(rowData.number)}
-            onDeleteRow={() => this.deleteRow(rowData.number)}
+            onAddRow={() => { const rowNumber = rowData.number; this.addRowAfter(rowNumber); }}
+            onDeleteRow={() => { const rowNumber = rowData.number; this.deleteRow(rowNumber) }}
         />
     }
 
