@@ -31,8 +31,14 @@ class InvoiceTable extends React.Component {
 
     addRow() {
         
-        let currentRowId = this.state.nextRowId;
-        this.setState({ nextRowId: currentRowId + 1 });
+        const newRow = this.createDefaultRow();
+        const rows = this.state.rows.concat(newRow);
+
+        this.setState({ rows: rows });
+    }
+
+    createDefaultRow() {
+        let currentRowId = this.getNextRowId();
 
         console.log('Adding row: ' + currentRowId);
 
@@ -40,16 +46,32 @@ class InvoiceTable extends React.Component {
             ...this.defaultRowData,
             number: currentRowId
         };
-        const rows = this.state.rows.slice();
-        rows.push(newRow);
-        this.setState({ rows: rows });
+
+        return newRow;
+    }
+
+    getNextRowId() {
+        const nextRowId = this.state.nextRowId;
+
+        this.setState({ 
+            nextRowId: nextRowId + 1
+         });
+
+         return nextRowId;
     }
 
     deleteRow(rowNumber) {
         console.log('deleting row: ' + rowNumber);
-        const rows = this.state.rows.slice();
-        let rowIndexToDelete = rows.findIndex(r => r.number === rowNumber);
-        rows.splice(rowIndexToDelete, 1);
+        let rows = this.state.rows.slice();
+
+        if (rows.length === 1) {
+            let defaultRow = this.createDefaultRow();
+            rows = [defaultRow];
+        } else {
+            let rowIndexToDelete = rows.findIndex(r => r.number === rowNumber);
+            rows.splice(rowIndexToDelete, 1);
+        }
+
         this.setState({ rows: rows });
     }
 
@@ -80,6 +102,8 @@ class InvoiceTable extends React.Component {
         const rows = this.state.rows.slice();
         const rowElements = rows.map(row => this.renderRow(row));
 
+        console.log('render rows', rows);
+        
         return (
             <table>
                 <thead>
