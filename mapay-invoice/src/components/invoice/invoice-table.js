@@ -20,23 +20,28 @@ class InvoiceTable extends React.Component {
 
         this.state = {
             rows: [
-                Object.assign({}, this.defaultRowData, {number: 0}),
+                {
+                    ...this.defaultRowData, 
+                    number: 0
+                }
             ],
             nextRowId: 1,
         };
     }
 
-    addRowAfter(rowNumber) {
+    addRow() {
         
         let currentRowId = this.state.nextRowId;
         this.setState({ nextRowId: currentRowId + 1 });
 
         console.log('Adding row: ' + currentRowId);
 
-        let newRow = Object.assign({}, this.defaultRowData, {number: currentRowId});
+        let newRow = {
+            ...this.defaultRowData,
+            number: currentRowId
+        };
         const rows = this.state.rows.slice();
-        let rowBefore = rows.indexOf(rows.find(r => r.number === rowNumber));
-        rows.splice(rowBefore + 1, 0, newRow);
+        rows.push(newRow);
         this.setState({ rows: rows });
     }
 
@@ -70,14 +75,11 @@ class InvoiceTable extends React.Component {
             this.setState({rows: rows});
         }
     }
+
     render() {
         const rows = this.state.rows.slice();
+        const rowElements = rows.map(row => this.renderRow(row));
 
-        let rowElements = [];
-        for (let row = 0; row < rows.length; row++) {
-            const rowData = rows[row];
-            rowElements.push(this.renderRow(rowData));
-        }
         return (
             <table>
                 <thead>
@@ -91,6 +93,13 @@ class InvoiceTable extends React.Component {
 
                 {rowElements}
 
+                <tbody>
+                    <tr>
+                        <td>
+                            <button onClick={() => this.addRow()}>Add Row</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         );
     }

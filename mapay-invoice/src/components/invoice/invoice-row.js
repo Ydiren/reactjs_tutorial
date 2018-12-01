@@ -20,12 +20,20 @@ class InvoiceRow extends React.Component {
     }
 
     onQuantityChanged(newQuantity) {
-        var newData = Object.assign({}, this.props.data, {quantity: newQuantity});
+        var newData = {
+            ...this.props.data, 
+            quantity: newQuantity,
+            total: newQuantity * this.props.data.price
+        };
         this.props.onRowChanged(newData);
     }
 
     onPriceChanged(newPrice) {
-        var newData = Object.assign({}, this.props.data, {price: newPrice});
+        var newData = {
+            ...this.props.data, 
+            price: newPrice,
+            total: this.props.data.quantity * newPrice
+        };
         this.props.onRowChanged(newData);
     }
 
@@ -56,13 +64,17 @@ class InvoiceRow extends React.Component {
                     <InvoiceItemPrice
                         placeholder='0.00'
                         value={this.props.data.price}
-                        onChanged={(event) => this.onPriceChanged(event.target.value)}
+                        onChanged={(newPrice) => this.onPriceChanged(newPrice)}
                     />
                     <InvoiceItemTotal
                         content='0.00'
                         value={this.props.data.total}
                         onChanged={(event) => this.onTotalChanged(event.target.value)}
                     />
+                    
+                    <td>
+                        <button onClick={() => this.props.onDeleteRow()}>Delete Row</button>
+                    </td>
                 </tr>
                 <tr className="itemDescription">
                     <InvoiceItemDescription
@@ -71,14 +83,6 @@ class InvoiceRow extends React.Component {
                         description={this.props.data.description}
                         onChanged={(event) => this.onDescriptionChanged(event.target.value)}
                     />
-                </tr>
-                <tr>
-                    <td>
-                        <button onClick={() => this.props.onAddRow()}>Add Row</button>
-                    </td>
-                    <td>
-                        <button onClick={() => this.props.onDeleteRow()}>Delete Row</button>
-                    </td>
                 </tr>
             </tbody>
         );
