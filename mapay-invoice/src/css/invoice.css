@@ -1,0 +1,70 @@
+#root {
+    width: 100%;
+    background: whitesmoke;
+}
+
+.invoice-form-container {
+    width:900px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.invoice-form {
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    background: white;
+    margin: 10px;
+    padding: 10px
+}
+
+section.recipients {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50%;
+}
+
+section.details {
+    margin-left: 10px;
+    float: right;
+}
+
+label {
+    min-width: 100px;
+    display: block;
+}
+
+.invoice-item {
+    width: 100%;
+}
+.item-name {
+    width: 100%;
+}
+
+.item-quantity {
+    max-width: 50px;
+    text-align: right;
+}
+
+.item-price {
+    max-width: 75px;
+    text-align: right;
+}
+
+.item-total-amount {
+    max-width: 50px;
+    text-align: right;
+}
+
+.delete-item {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url('/images/trash-icon.svg') no-repeat center center;
+    background-size: 25px 25px;
+    padding: 3px;
+}
+
+.item-description {
+    width: 100%;
+}

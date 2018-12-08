@@ -77,11 +77,12 @@ class InvoiceTable extends React.Component {
 
     renderRow(rowData) {
 
+        const rowNumber = rowData.number;
         return <InvoiceRow
-            key={rowData.number}
+            key={rowNumber}
             data={rowData}
-            onAddRow={() => { const rowNumber = rowData.number; this.addRowAfter(rowNumber); }}
-            onDeleteRow={() => { const rowNumber = rowData.number; this.deleteRow(rowNumber) }}
+            onAddRow={() => { this.addRowAfter(rowNumber); }}
+            onDeleteRow={() => { this.deleteRow(rowNumber) }}
             onRowChanged={(data) => this.updateRow(data)}
         />
     }
@@ -105,13 +106,15 @@ class InvoiceTable extends React.Component {
         console.log('render rows', rows);
         
         return (
-            <table>
+            <div className="table-responsive">
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Description</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Amount</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -125,6 +128,7 @@ class InvoiceTable extends React.Component {
                     </tr>
                 </tbody>
             </table>
+            </div>
         );
     }
 }

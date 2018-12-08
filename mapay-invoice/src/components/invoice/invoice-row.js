@@ -5,6 +5,7 @@ import InvoiceItemQuantity from './rowItems/item-quantity';
 import InvoiceItemPrice from './rowItems/item-price';
 import InvoiceItemTotal from './rowItems/item-total';
 import InvoiceItemDescription from './rowItems/item-description';
+import InvoiceItemDelete from './rowItems/item-delete';
 
 // Row
 class InvoiceRow extends React.Component {
@@ -12,6 +13,10 @@ class InvoiceRow extends React.Component {
         super(props);
 
         this.onNameChanged = this.onNameChanged.bind(this);
+        this.onQuantityChanged = this.onQuantityChanged.bind(this);
+        this.onPriceChanged = this.onPriceChanged.bind(this);
+        this.onTotalChanged = this.onTotalChanged.bind(this);
+        this.onDescriptionChanged = this.onDescriptionChanged.bind(this);
     }
 
     onNameChanged(newName) {
@@ -72,9 +77,9 @@ class InvoiceRow extends React.Component {
                         onChanged={(event) => this.onTotalChanged(event.target.value)}
                     />
                     
-                    <td>
-                        <button onClick={() => this.props.onDeleteRow()}>Delete Row</button>
-                    </td>
+                    <InvoiceItemDelete
+                        onDeleteRow={this.props.onDeleteRow}
+                    />
                 </tr>
                 <tr className="itemDescription">
                     <InvoiceItemDescription

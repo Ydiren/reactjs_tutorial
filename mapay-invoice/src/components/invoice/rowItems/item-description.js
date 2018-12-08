@@ -6,7 +6,7 @@ class InvoiceItemDescription extends React.Component {
         return (
             <td colSpan={this.props.colspan}>
                 <textarea
-                    style={{ width: "100%" }}
+                    className="item-description form-control"
                     placeholder={this.props.placeholder}
                     defaultValue={this.props.description}
                     onChange={this.props.onChanged}

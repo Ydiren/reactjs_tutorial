@@ -7,6 +7,7 @@ class InvoiceItemName extends React.Component {
         return (
             <td>
                 <input
+                    className="item-name form-control"
                     type="text"
                     placeholder={this.props.placeholder}
                     defaultValue={this.props.name} 

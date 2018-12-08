@@ -34,13 +34,13 @@ class InvoiceRecipients extends React.Component {
     render() {
         return (
             <section className="recipients">
-                <div className="label-column">
+                <div className="form-group">
                     <label htmlFor="to-email">Bill to:</label>
-                    <label htmlFor="cc-email">Cc:</label>
+                    <input type="email" id="to-email" name="to-email" placeholder="Email address" onChange={this.toChanged} className="form-control"/>
                 </div>
-                <div className="field-column">
-                    <input type="email" id="to-email" name="to-email" placeholder="Email address" onChange={this.toChanged} />
-                    <input type="email" id="cc-email" name="cc-email" placeholder="Email address" onChange={this.ccChanged} />
+                <div className="form-group">
+                    <label htmlFor="cc-email">Cc:</label>
+                    <input type="email" id="cc-email" name="cc-email" placeholder="Email address" onChange={this.ccChanged} className="form-control" />
                 </div>
             </section>
         );

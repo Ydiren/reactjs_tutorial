@@ -31,12 +31,14 @@ class InvoiceForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <InvoiceRecipients />
-                <InvoiceDetails 
-                    details={this.state.details}
-                    />
-                <InvoiceTable />
+            <div className="invoice-form-container">
+                <div className="invoice-form">
+                    <InvoiceRecipients />
+                    <InvoiceDetails 
+                        details={this.state.details}
+                        />
+                    <InvoiceTable />
+                </div>
             </div>
         );
     }

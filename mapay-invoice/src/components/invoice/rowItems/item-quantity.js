@@ -6,6 +6,7 @@ class InvoiceItemQuantity extends React.Component {
         return (
             <td>
                 <input
+                    className="item-quantity form-control"
                     type="number"
                     placeholder={this.props.placeholder}
                     defaultValue={this.props.value}

@@ -39,6 +39,7 @@ class InvoiceItemPrice extends React.Component {
         return (
             <td>
                 <input
+                    className="item-price form-control"
                     type="text"
                     placeholder={this.props.placeholder}
                     onChange={this.onChanged}

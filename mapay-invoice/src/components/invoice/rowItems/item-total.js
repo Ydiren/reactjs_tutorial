@@ -13,6 +13,7 @@ class InvoiceItemTotal extends React.Component {
         return (
             <td>
                 <input
+                    className="item-total-amount form-control-plaintext"
                     readOnly
                     type="text"
                     placeholder={this.props.placeholder}
