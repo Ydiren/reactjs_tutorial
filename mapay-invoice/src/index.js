@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import InvoiceTable from './components/invoice/invoice-table';
+import InvoiceForm from './components/invoice/invoice-form';
 
-ReactDOM.render(<InvoiceTable />, document.getElementById('root'));
+ReactDOM.render(<InvoiceForm />, document.getElementById('root'));

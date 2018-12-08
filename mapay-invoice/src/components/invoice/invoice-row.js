@@ -1,10 +1,10 @@
 import React from 'react';
 
-import InvoiceItemName from './item-name';
-import InvoiceItemQuantity from './item-quantity';
-import InvoiceItemPrice from './item-price';
-import InvoiceItemTotal from './item-total';
-import InvoiceItemDescription from './item-description';
+import InvoiceItemName from './rowItems/item-name';
+import InvoiceItemQuantity from './rowItems/item-quantity';
+import InvoiceItemPrice from './rowItems/item-price';
+import InvoiceItemTotal from './rowItems/item-total';
+import InvoiceItemDescription from './rowItems/item-description';
 
 // Row
 class InvoiceRow extends React.Component {

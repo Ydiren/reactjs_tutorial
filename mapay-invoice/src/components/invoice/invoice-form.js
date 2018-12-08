@@ -1,0 +1,45 @@
+import React from 'react';
+
+import InvoiceRecipients from './invoice-recipients';
+import InvoiceDetails from './invoice-details';
+import InvoiceTable from './invoice-table';
+
+class InvoiceForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        const today = new Date();
+        const nextMonth = new Date(new Date().setMonth(today.getMonth() + 1));
+        this.state = {
+            recipients: {
+                to: "",
+                cc: ""
+            },
+            details: {
+                invoiceDate: today,
+                dueDate: nextMonth
+            },
+            items: []
+        };
+
+        this.handleDateChange = this.handleDateChange.bind(this);
+    }
+
+    handleDateChange(date) {
+        console.log(date);
+    }
+
+    render() {
+        return (
+            <div>
+                <InvoiceRecipients />
+                <InvoiceDetails 
+                    details={this.state.details}
+                    />
+                <InvoiceTable />
+            </div>
+        );
+    }
+}
+
+export default InvoiceForm;

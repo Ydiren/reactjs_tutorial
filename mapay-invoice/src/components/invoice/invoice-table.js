@@ -11,8 +11,8 @@ class InvoiceTable extends React.Component {
 
         this.defaultRowData = {
             number: 0,
-            name: 'Bernard',
-            description: 'Hello World',
+            name: '',
+            description: '',
             quantity: 0,
             price: 0.00,
             total: 0
